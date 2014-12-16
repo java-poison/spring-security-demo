@@ -1,0 +1,36 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!--1. A <property> requires that the bean contain a corresponding setter 
+		method. -->
+	<!-- <bean name="sequenceGenerator" class="test.delete.SequenceGenerator"> 
+		<property name="prefix"> <value>SJ</value> </property> <property name="suffix"> 
+		<value>K</value> </property> <property name="initial"> <value>200000</value> 
+		</property> </bean> -->
+
+	<!-- There’s not a name attribute in <constructor-arg>, because constructor 
+		arguments are position-based. -->
+	<!-- <bean name="sequenceGenerator" class="test.delete.SequenceGenerator"> 
+		<constructor-arg> <value>30</value> </constructor-arg> <constructor-arg> 
+		<value>A</value> </constructor-arg> <constructor-arg> <value>100000</value> 
+		</constructor-arg> </bean> -->
+
+	<bean id="sequenceGenerator" class="test.delete.SequenceGenerator">
+		<property name="initial" value="100000" />
+		<property name="suffixes">
+			<list>
+				<value>A</value>
+				<bean class="java.net.URL">
+					<constructor-arg value="http" />
+					<constructor-arg value="www.apress.com" />
+					<constructor-arg value="/" />
+				</bean>
+				<null />
+			</list>
+		</property>
+	</bean>
+
+</beans>
